@@ -52,6 +52,7 @@ app.use('/api/notifications', checkDatabase, require('./routes/notifications'));
 app.use('/api/settings', checkDatabase, require('./routes/settings'));
 app.use('/api/job-preferences', checkDatabase, require('./routes/jobPreferences'));
 app.use('/api/saved-jobs', checkDatabase, require('./routes/savedJobs'));
+app.use('/api/applied-jobs', checkDatabase, require('./routes/appliedJobs'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

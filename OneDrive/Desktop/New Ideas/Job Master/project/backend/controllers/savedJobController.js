@@ -1,12 +1,18 @@
 const SavedJob = require('../models/SavedJob');
 const Job = require('../models/Job');
 
-// @desc    Get user's saved jobs
+// @desc    Get user's saved jobs (non-applied only)
 // @route   GET /api/saved-jobs
 // @access  Private
 const getSavedJobs = async (req, res) => {
   try {
-    const savedJobs = await SavedJob.find({ user: req.user._id })
+    // Only get non-applied saved jobs
+    const query = {
+      user: req.user._id,
+      applied: { $ne: true } // Exclude applied jobs
+    };
+
+    const savedJobs = await SavedJob.find(query)
       .populate('job')
       .sort('-savedAt')
       .lean();
@@ -65,7 +71,8 @@ const saveJob = async (req, res) => {
       user: req.user._id,
       job: jobId,
       notes,
-      priority: priority || 'medium'
+      priority: priority || 'medium',
+      applied: false // Ensure it's not marked as applied
     });
 
     await savedJob.save();
