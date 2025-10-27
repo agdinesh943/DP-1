@@ -82,10 +82,6 @@ The frontend will start on `http://localhost:5173`
 }
 ```
 
-### Valid Admin Codes:
-- `ADMIN2024`
-- `FACULTY2024`
-- `MASTER2024`
 
 ### Response:
 ```json
@@ -201,3 +197,4 @@ This project is licensed under the MIT License.
 ## 🆘 Support
 
 For support and questions, please open an issue in the repository.
+
